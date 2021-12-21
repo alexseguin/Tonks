@@ -303,7 +303,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.012709022}
+  m_Offset: {x: 0, y: -0.0033123642}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -314,7 +314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.97458196}
+  m_Size: {x: 1, y: 0.9933753}
   m_EdgeRadius: 0
 --- !u!50 &168601606
 Rigidbody2D:
@@ -405,8 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbab681be924a3e4dae8735ffbec3d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &244950530
-BoxCollider2D:
+--- !u!60 &244950530
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -418,7 +418,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009610534, y: -0.11532644}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -428,9 +428,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.98077893, y: 0.31765193}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4722535, y: 0.036412}
+      - {x: -0.47470653, y: 0.037755966}
+      - {x: -0.478803, y: -0.19901296}
+      - {x: -0.3879331, y: -0.27131975}
+      - {x: 0.40696678, y: -0.27131915}
+      - {x: 0.47164768, y: -0.1870876}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +679,8 @@ MonoBehaviour:
   cannon: {fileID: 153062328}
   muzzle: {fileID: 1254109013}
   cannonRotationSpeed: 1
+  shell: {fileID: 6660139845079722571, guid: d014084510677e6458af2645fbbe5c87, type: 3}
+  delayInSeconds: 1
   launchSpeed: 15
 --- !u!120 &1863253575
 LineRenderer:
@@ -738,7 +745,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5943396, g: 0.09251513, b: 0.09251513, a: 0.5372549}
+      key0: {r: 0.21698111, g: 0.1975347, b: 0.1975347, a: 0.29411766}
       key1: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

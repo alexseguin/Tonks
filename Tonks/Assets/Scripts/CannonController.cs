@@ -11,10 +11,15 @@ public class CannonController : MonoBehaviour
     public GameObject muzzle;
     public float cannonRotationSpeed = 0.5f;
 
-    // Cannon launch speed
+    public GameObject shell;
+
+    public float delayInSeconds = 1f;
     public float launchSpeed = 25f;
     float simulateForDuration = 5f;//simulate for 5 secs in the furture
     float simulationStep = 0.1f;//Will add a point every 0.1 secs.
+
+    private float collisionCheckRadius = 0.1f;
+    private bool canShoot = true;
 
     void Start()
     {
@@ -27,6 +32,19 @@ public class CannonController : MonoBehaviour
         RotateCannon();
         UpdateLaunchSpeed();
         SimulateArc();
+        FireCannon();
+    }
+
+    public void FireCannon() 
+    {
+        if(Input.GetButtonDown("Fire1") && canShoot)
+        {
+            canShoot = false;
+            Vector2 directionVector = muzzle.transform.position - cannon.transform.position;
+            GameObject _shell = Instantiate(shell, muzzle.transform.position, muzzle.transform.rotation);
+            _shell.GetComponent<Rigidbody2D>().AddForce(directionVector * launchSpeed/(1.4f), ForceMode2D.Impulse);
+            StartCoroutine(ShootDelay());
+        }
     }
 
     public void RotateCannon()
@@ -63,7 +81,6 @@ public class CannonController : MonoBehaviour
         }
     }
 
-    private float collisionCheckRadius = 0.1f;
     private void SimulateArc()
     {
 
@@ -96,13 +113,20 @@ public class CannonController : MonoBehaviour
     private bool CheckForCollision(Vector2 position)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius);
-        if (hits.Length > 0)
+        foreach (var item in hits)
         {
-            //We hit something 
-            //check if its a wall or seomthing
-            //if its a valid hit then return true
-            return true;
+            if(item.gameObject.tag != "Shell")
+            {
+                return true;
+            }
         }
         return false;
     }
+
+
+    IEnumerator ShootDelay()
+   {
+     yield return new WaitForSeconds(delayInSeconds);
+     canShoot = true;
+   }
 }
