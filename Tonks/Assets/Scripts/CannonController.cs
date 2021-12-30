@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +14,7 @@ public class CannonController : MonoBehaviour
 
     public float delayInSeconds = 1f;
     public float launchSpeed = 25f;
+    public float recoilForce = 2f;
     float simulateForDuration = 5f;//simulate for 5 secs in the furture
     float simulationStep = 0.1f;//Will add a point every 0.1 secs.
 
@@ -44,7 +44,15 @@ public class CannonController : MonoBehaviour
             GameObject _shell = Instantiate(shell, muzzle.transform.position, muzzle.transform.rotation);
             _shell.GetComponent<Rigidbody2D>().AddForce(directionVector * launchSpeed/(1.4f), ForceMode2D.Impulse);
             StartCoroutine(ShootDelay());
+            
+            ApplyRecoil(directionVector);
         }
+    }
+
+    public void ApplyRecoil(Vector2 direction)
+    {
+            var parent = this.gameObject.GetComponentInParent<Rigidbody2D>();
+            parent.AddForce(-direction * recoilForce, ForceMode2D.Impulse);
     }
 
     public void RotateCannon()
