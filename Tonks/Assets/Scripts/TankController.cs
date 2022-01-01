@@ -37,7 +37,7 @@ public class TankController : MonoBehaviour
         } else {
             isMoving = false;
         }
-        transform.position = new Vector3(transform.position.x + inputX, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + (inputX * 3), transform.position.y, transform.position.z);
     }
 
     private void MufflerEmissions() {

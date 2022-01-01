@@ -61,7 +61,7 @@ public class CannonController : MonoBehaviour
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(cannon.transform.position);
 
         //Get the Screen position of the mouse
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 10f);
+        Vector3 mouseWorldPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition + Vector3.forward * 10f);
 
         float rotationAngle = AngleBetweenPoints(positionOnScreen, mouseWorldPosition) + 180;
 
